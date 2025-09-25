@@ -1,0 +1,17 @@
+name: Ethereum Code Reviewer
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  security-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ethereum Security Reviewer
+        uses: protocol-security/ethereum-code-reviewer@v0.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          llm-provider: 'anthropic'
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
